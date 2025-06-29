@@ -7,22 +7,32 @@
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; }
     #quoteDisplay { margin: 20px 0; font-size: 1.2em; font-style: italic; }
-    input { margin: 5px; padding: 5px; }
-    button { padding: 6px 10px; }
+    input, select { margin: 5px; padding: 5px; }
+    button { padding: 6px 10px; margin: 5px 0; }
     hr { margin: 20px 0; }
   </style>
 </head>
 <body>
   <h1>Dynamic Quote Generator</h1>
 
+  <!-- Quote Display Section -->
   <div>
     <label for="categorySelect">Choose Category:</label>
     <select id="categorySelect"></select>
-    <button id="newQuote">Show New Quote</button>
+    <button id="newQuote">Show Random Quote</button>
   </div>
 
-  <div id="quoteDisplay">Click "Show New Quote" to begin!</div>
+  <div id="quoteDisplay">Click "Show Random Quote" to begin!</div>
 
+  <!-- Category Filter -->
+  <div>
+    <label for="categoryFilter">Filter by Category:</label>
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+    </select>
+  </div>
+
+  <!-- Add Quote Section -->
   <h3>Add New Quote</h3>
   <div>
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
@@ -32,6 +42,7 @@
 
   <hr>
 
+  <!-- Import/Export Section -->
   <h3>Import / Export Quotes</h3>
   <div>
     <input type="file" id="importFile" accept=".json" />
