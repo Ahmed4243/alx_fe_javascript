@@ -9,9 +9,6 @@ let quotes = [
 const quoteDisplay = document.getElementById("quoteDisplay");
 const newQuoteBtn = document.getElementById("newQuote");
 const categorySelect = document.getElementById("categorySelect");
-const addQuoteBtn = document.getElementById("addQuoteBtn");
-const newQuoteText = document.getElementById("newQuoteText");
-const newQuoteCategory = document.getElementById("newQuoteCategory");
 
 // Extract unique categories and populate dropdown
 function updateCategoryOptions() {
@@ -39,28 +36,52 @@ function showRandomQuote() {
   quoteDisplay.textContent = `"${randomQuote.text}" — ${randomQuote.category}`;
 }
 
-// Add a new quote from the form
-function addQuote() {
-  const text = newQuoteText.value.trim();
-  const category = newQuoteCategory.value.trim();
+// Create the quote form dynamically and handle quote addition
+function createAddQuoteForm() {
+  const container = document.createElement("div");
 
-  if (!text || !category) {
-    alert("Please fill in both fields.");
-    return;
-  }
+  const textInput = document.createElement("input");
+  textInput.id = "newQuoteText";
+  textInput.placeholder = "Enter quote";
+  container.appendChild(textInput);
 
-  quotes.push({ text, category });
-  updateCategoryOptions();
+  const categoryInput = document.createElement("input");
+  categoryInput.id = "newQuoteCategory";
+  categoryInput.placeholder = "Enter category";
+  container.appendChild(categoryInput);
 
-  newQuoteText.value = "";
-  newQuoteCategory.value = "";
+  const button = document.createElement("button");
+  button.id = "addQuoteBtn";
+  button.textContent = "Add Quote";
+  container.appendChild(button);
 
-  alert("Quote added!");
+  document.body.appendChild(container);
+
+  button.addEventListener("click", () => {
+    const text = textInput.value.trim();
+    const category = categoryInput.value.trim();
+
+    if (!text || !category) {
+      alert("Please fill in both fields.");
+      return;
+    }
+
+    quotes.push({ text, category });
+    updateCategoryOptions();
+
+    textInput.value = "";
+    categoryInput.value = "";
+
+    alert("Quote added!");
+  });
 }
 
 // Event listeners
 newQuoteBtn.addEventListener("click", showRandomQuote);
-addQuoteBtn.addEventListener("click", addQuote);
 
 // Initial load
 updateCategoryOptions();
+createAddQuoteForm(); // Call it on load
+
+// Expose for test scripts
+window.createAddQuoteForm = createAddQuoteForm;
