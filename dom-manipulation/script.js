@@ -36,7 +36,7 @@ async function syncWithServer() {
     quotes = parsedQuotes;
     saveQuotes();
     populateCategories();
-    showNotification("Quotes synced with server. Server data has been applied.");
+    showNotification("Quotes synced with server!");
   } catch (err) {
     console.error("Sync failed:", err);
     showNotification("Sync failed. Working with local data.");
