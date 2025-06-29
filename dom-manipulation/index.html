@@ -9,6 +9,7 @@
     #quoteDisplay { margin: 20px 0; font-size: 1.2em; font-style: italic; }
     input { margin: 5px; padding: 5px; }
     button { padding: 6px 10px; }
+    hr { margin: 20px 0; }
   </style>
 </head>
 <body>
@@ -27,6 +28,14 @@
     <input id="newQuoteText" type="text" placeholder="Enter a new quote" />
     <input id="newQuoteCategory" type="text" placeholder="Enter quote category" />
     <button id="addQuoteBtn">Add Quote</button>
+  </div>
+
+  <hr>
+
+  <h3>Import / Export Quotes</h3>
+  <div>
+    <input type="file" id="importFile" accept=".json" />
+    <button id="exportBtn">Export Quotes to JSON</button>
   </div>
 
   <script src="script.js"></script>
