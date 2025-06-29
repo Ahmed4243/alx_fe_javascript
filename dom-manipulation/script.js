@@ -43,6 +43,11 @@ async function syncWithServer() {
   }
 }
 
+// Wrapper for sync for testing
+function syncQuotes() {
+  syncWithServer();
+}
+
 // Send new quote to server
 async function sendQuoteToServer(quote) {
   try {
@@ -183,3 +188,4 @@ window.populateCategories = populateCategories;
 window.filterQuotes = filterQuotes;
 window.addQuote = addQuote;
 window.fetchQuotesFromServer = fetchQuotesFromServer;
+window.syncQuotes = syncQuotes;
