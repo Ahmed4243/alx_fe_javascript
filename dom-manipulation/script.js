@@ -18,15 +18,19 @@ function saveQuotes() {
   localStorage.setItem("quotes", JSON.stringify(quotes));
 }
 
+// Simulated fetch from server
+async function fetchQuotesFromServer() {
+  const response = await fetch(SERVER_URL);
+  const serverQuotes = await response.json();
+  return serverQuotes
+    .filter(q => q.title && q.body)
+    .map(q => ({ text: q.title, category: q.body }));
+}
+
 // Sync quotes with server
 async function syncWithServer() {
   try {
-    const response = await fetch(SERVER_URL);
-    const serverQuotes = await response.json();
-
-    const parsedQuotes = serverQuotes
-      .filter(q => q.title && q.body)
-      .map(q => ({ text: q.title, category: q.body }));
+    const parsedQuotes = await fetchQuotesFromServer();
 
     // Simple conflict resolution: server wins
     quotes = parsedQuotes;
@@ -178,3 +182,4 @@ if (last) {
 window.populateCategories = populateCategories;
 window.filterQuotes = filterQuotes;
 window.addQuote = addQuote;
+window.fetchQuotesFromServer = fetchQuotesFromServer;
